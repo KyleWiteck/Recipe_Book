@@ -1,6 +1,19 @@
 import React from 'react';
-import Index from './index';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import Home from './components/Home';
+import ExplorePage from './components/explore_page/ExplorePage';
 
-export default function App() {
-	return <Index></Index>;
-}
+const MainNavigator = createStackNavigator(
+	{
+		Home: { screen: Home },
+		ExplorePage: { screen: ExplorePage },
+	},
+	{ initialRouteName: 'Home' }
+);
+
+const AppContainer = createAppContainer(MainNavigator);
+
+export default App = () => {
+	return <AppContainer />;
+};

@@ -7,7 +7,11 @@ const ButtonGrid = props => {
 		<View style={styles.buttonsContainer}>
 			{props.buttons.map(button => {
 				return (
-					<TouchableHighlight key={button.key} style={styles.button}>
+					<TouchableHighlight
+						key={button.key}
+						style={styles.button}
+						onPress={() => props.navigation(button.route)}
+					>
 						<View>
 							<FontAwesomeIcon
 								size={40}

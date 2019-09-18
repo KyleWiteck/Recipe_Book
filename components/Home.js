@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import Header from './components/Header';
-import ButtonGrid from './components/ButtonGrid';
+import Header from './Header';
+import ButtonGrid from './ButtonGrid';
 import {
 	faSearch,
 	faListAlt,
@@ -9,26 +9,34 @@ import {
 	faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons';
 
-export default index = () => {
-	return (
-		<View style={styles.container}>
-			<Header />
-			<View style={styles.buttonGridArea}>
-				<ImageBackground
-					source={require('./imgs/bell-pepper.jpg')}
-					style={{ flex: 1 }}
-				>
-					<View style={styles.buttonGridArea}>
-						<Text style={styles.buttonGridAreaText}>
-							This is a place a message will go
-						</Text>
-						<ButtonGrid buttons={buttons} />
-					</View>
-				</ImageBackground>
+export default class Home extends React.Component {
+	static navigationOptions = {
+		header: null,
+	};
+	render() {
+		return (
+			<View style={styles.container}>
+				<Header />
+				<View style={styles.buttonGridArea}>
+					<ImageBackground
+						source={require('../imgs/bell-pepper.jpg')}
+						style={{ flex: 1 }}
+					>
+						<View style={styles.buttonGridArea}>
+							<Text style={styles.buttonGridAreaText}>
+								This is a place a message will go
+							</Text>
+							<ButtonGrid
+								buttons={buttons}
+								navigation={route => this.props.navigation.navigate(route)}
+							/>
+						</View>
+					</ImageBackground>
+				</View>
 			</View>
-		</View>
-	);
-};
+		);
+	}
+}
 
 const styles = StyleSheet.create({
 	container: {
@@ -56,24 +64,24 @@ const buttons = [
 		key: 0,
 		icon: faSearch,
 		text: 'Explore Recipes',
+		route: 'ExplorePage',
 	},
 	{
 		key: 1,
 		icon: faLayerGroup,
 		text: 'Categories',
+		route: 'ExplorePage',
 	},
 	{
 		key: 2,
 		icon: faListAlt,
 		text: 'My Recipes',
+		route: 'ExplorePage',
 	},
 	{
 		key: 3,
 		icon: faShoppingBasket,
 		text: 'Shopping List',
+		route: 'ExplorePage',
 	},
 ];
-
-const buttonPress = index => {
-	activeButton = index;
-};
